@@ -1,2 +1,27 @@
 <!--pages/content/content.wxml-->
-<text>pages/content/content.wxml</text>
+<view class='margin-top'></view>
+<form>
+<view wx:for='{{dataList}}'>
+<view  class="cu-form-group">
+   <view class='title'>{{item.name}}</view>
+   <input placeholder='{{item.tip}}' class='title maxlength="30" cursor-spacing="10"'></input>
+  <text wx:if='{{stateList[index]}}' class='icon-check lg text-green'></text>
+  <text wx:else class='icon-info lg text-red'  data-index='{{index}}' bindtap='addDis'></text>
+</view>
+<view wx:if='{{isShowDis[index]}}' class='text-grey padding-left'>{{item.description}}</view>
+</view>
+
+
+<button class=" bg-green margin-top" bindtap="showDialogBtn">提交</button>
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">提示</view>
+  <view class="modal-content">
+    <view>提交成功！</view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="hideModal" data-status="confirm">确定</view>
+  </view>
+</view>
+</form>

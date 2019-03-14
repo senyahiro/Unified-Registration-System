@@ -1,66 +1,63 @@
 // pages/content/content.js
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    showModal: false,
+    isShowDis:[false,false],
+    dataList:[
+      {
+        name: '姓名',
+        type: 'text',
+        defaultValue:null,
+        description:'1-4个字符',
+        tip:'真实姓名',
+        require: true,
+        case:null,
+        range:null,
+        subItem:null
+      },
+      {
+        name: '学号',
+        type: 'number',
+        defaultValue: null,
+        description: '30位以内纯数字',
+        tip: '',
+        require: true,
+        case: null,
+        range: null,
+        subItem: null
+      }
+    ],
+    stateList: [false, true]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  
+  onLoad: function () {
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  addDis(event){
+    var s=true;
+    var iss = this.data.isShowDis;
+    var index = event.currentTarget.dataset.index;
+    var playDIS = "isShowDis[" + 0 + "]";
+    if (iss[index] == false) {
+      s = true;
+    }
+    else {
+      s = false;
+    }
+   
+    this.setData({
+      [playDIS]:s
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  showDialogBtn: function () {
+    this.setData({
+      showModal: true
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  hideModal: function () {
+    this.setData({
+      showModal: false
+    });
   }
+
 })
